@@ -1,0 +1,365 @@
+.no-full-screen-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 38PX;
+  transform: translateZ(100px); /* no */
+  .time {
+    min-width: 45px;
+    width: 10%;
+    color: #FAFAFA;
+    &.left {
+      margin: 0 10px 0 10px;
+    }
+    &.right {
+      margin: 0 10px 0 30px;
+    }
+  }
+  .progress {
+    position: relative;
+    width: 50%;
+    .inside {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background: white;
+    }
+    .point {
+      position: absolute;
+      background: white;
+    }
+
+    /* input range样式覆写 */
+
+    $trackHeight:7PX;
+    $thumbHeight:28PX;
+    $thumbWidth:$thumbHeight;
+    $thumbRadius:$thumbHeight;
+    $thumbHoverHeight:32PX;
+    $thumbHoverWidth:$thumbHoverHeight;
+    $thumbHoverRadius:$thumbHoverHeight;
+    $thumbHoverMarginTop:-13.0PX;
+    $trackBorderRadius:$trackHeight;
+    $thumbMarginTop:-11.0PX;
+
+    .fake_bar{
+      position: absolute;
+      box-sizing: border-box;
+      z-index: -1;
+      width: 100%;
+      height: $trackHeight;
+      margin: 3.8px 0;
+      padding-left: 0.5*$thumbWidth;
+      padding-right: 0.5*$thumbWidth;
+      -webkit-tap-highlight-color: transparent;
+      div{
+        height: 100%;
+        border-radius: $trackHeight/2;
+        background-color: #0A002A;
+      }
+      
+    }
+
+    input[type="range"] {
+      z-index: 10;
+      width: 100%;
+      margin: 3.8px 0;
+      background-color: transparent;
+      -webkit-appearance: none;
+      -webkit-tap-highlight-color: transparent;
+      background-size: 0% 100%;
+      user-select: none;
+    }
+    input[type="range"]:focus {
+      outline: none;
+    }
+
+    /* 覆写轨迹样式 */
+    input[type="range"]::-webkit-slider-runnable-track {
+      z-index: -1;
+      background: transparent;
+      border-radius: $trackBorderRadius;
+      width: 100%;
+      height: $trackHeight;
+      cursor: pointer;
+    }
+    input[type="range"]:focus::-webkit-slider-runnable-track {
+      background: transparent;
+    }
+    input[type="range"]::-moz-range-track {
+      z-index: -1;
+      background: transparent;
+      border-radius: $trackBorderRadius;
+      width: 100%;
+      height: $trackHeight;
+      cursor: pointer;
+    }
+    input[type="range"]::-ms-track {
+      z-index: -1;
+      background: transparent;
+      border-color: transparent;
+      border-width: 4.8px 0;
+      color: transparent;
+      width: 100%;
+      height: $trackHeight;
+      cursor: pointer;
+    }
+    input[type="range"]::-ms-fill-lower {
+      z-index: -1;
+      background: transparent;
+      border-radius: $trackBorderRadius;
+    }
+    input[type="range"]::-ms-fill-upper {
+      z-index: -1;
+      background: transparent;
+      border-radius: $trackBorderRadius;
+    }
+
+    /* 覆写拖动球样式 */
+    input[type="range"]::-webkit-slider-thumb {
+      margin-top: $thumbMarginTop;
+      width: $thumbWidth;
+      height: $thumbHeight;
+      background-color: transparent;
+      background-size: contain;
+      background-position: center;
+      border: none;
+      cursor: pointer;
+      -webkit-appearance: none;
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: $thumbWidth;
+      height: $thumbHeight;
+      background-color: transparent;
+      background-size: contain;
+      border: none;
+      cursor: pointer;
+    }
+    
+    input[type="range"]::-ms-thumb {
+      width: $thumbWidth;
+      height: $thumbHeight;
+      background-color: transparent;
+      background-size: contain;
+      border: none;
+      cursor: pointer;
+      margin-top: 0;
+
+      /* Needed to keep the Edge thumb centred */
+    }
+    
+    input[type="range"]:focus::-ms-fill-lower {
+      background: transparent;
+    }
+    input[type="range"]:focus::-ms-fill-upper {
+      background: transparent;
+    }
+
+    /* 覆写拖动球hover时的样式 */
+    input[type="range"]::-webkit-slider-thumb:hover{
+      margin-top: $thumbHoverMarginTop;
+      width: $thumbHoverWidth;
+      height: $thumbHoverHeight;
+      border-radius: $thumbHoverRadius;
+    }
+    input[type="range"]::-moz-range-thumb:hover{
+      margin-top: $thumbHoverMarginTop;
+      width: $thumbHoverWidth;
+      height: $thumbHoverHeight;
+      border-radius: $thumbHoverRadius;
+    }
+    input[type="range"]::-ms-thumb:hover {
+      margin-top: 0;
+      width: $thumbHoverWidth;
+      height: $thumbHoverHeight;
+      border-radius: $thumbHoverRadius;
+    }
+    
+    /* TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
+    how to remove the virtical space around the range input in IE  */
+    @supports (-ms-ime-align:auto) {
+      /* Pre-Chromium Edge only styles, selector taken from hhttps://stackoverflow.com/a/32202953/7077589 */
+      input[type="range"] {
+        margin: 0;
+        
+        /* Edge starts the margin from the thumb, not the track as other browsers do */
+      }
+    }
+    
+  }
+  .volume {
+    display: none;
+    position: relative;
+
+    $trackHeight:7PX;
+    $thumbHeight:16PX;
+    $thumbWidth:$thumbHeight;
+    $thumbRadius:$thumbHeight;
+    $thumbHoverHeight:20PX;
+    $thumbHoverWidth:$thumbHoverHeight;
+    $thumbHoverRadius:$thumbHoverHeight;
+    $thumbHoverMarginTop:-7.5PX;
+    $trackBorderRadius:$trackHeight;
+    $thumbMarginTop:-5.5PX;
+
+    input[type="range"] {
+      width: 100%;
+      margin: 3.8px 0;
+      -webkit-appearance: none;
+      background: -webkit-linear-gradient(#059CFA, #059CFA) no-repeat;
+      background-color: transparent;
+      background-size: 0% 100%;
+    }
+    input[type="range"]:focus {
+      outline: none;
+    }
+
+    /* 覆写轨迹样式 */
+    input[type="range"]::-webkit-slider-runnable-track {
+      background: transparent;
+      border: 0.5px solid #010101;
+      border-radius: $trackBorderRadius;
+      width: 100%;
+      height: $trackHeight;
+      cursor: pointer;
+    }
+    input[type="range"]:focus::-webkit-slider-runnable-track {
+      background: transparent;
+    }
+    input[type="range"]::-moz-range-track {
+      background: transparent;
+      border: 0.5px solid #010101;
+      border-radius: $trackBorderRadius;
+      width: 100%;
+      height: $trackHeight;
+      cursor: pointer;
+    }
+    input[type="range"]::-ms-track {
+      background: transparent;
+      border-color: transparent;
+      border-width: 4.8px 0;
+      color: transparent;
+      width: 100%;
+      height: $trackHeight;
+      cursor: pointer;
+    }
+    input[type="range"]::-ms-fill-lower {
+      background: transparent;
+      border: 0.5px solid #010101;
+      border-radius: $trackBorderRadius;
+    }
+    input[type="range"]::-ms-fill-upper {
+      background: transparent;
+      border: 0.5px solid #010101;
+      border-radius: $trackBorderRadius;
+    }
+
+    /* 覆写拖动球样式 */
+    input[type="range"]::-webkit-slider-thumb {
+      margin-top: $thumbMarginTop;
+      width: $thumbWidth;
+      height: $thumbHeight;
+      background: #fff;
+      border: 1px solid #000;
+      border-radius: $thumbRadius;
+      cursor: pointer;
+      -webkit-appearance: none;
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: $thumbWidth;
+      height: $thumbHeight;
+      background: #fff;
+      border: 1px solid #000;
+      border-radius: $thumbRadius;
+      cursor: pointer;
+    }
+    
+    input[type="range"]::-ms-thumb {
+      width: $thumbWidth;
+      height: $thumbHeight;
+      background: #fff;
+      border: 1px solid #000;
+      border-radius: $thumbRadius;
+      cursor: pointer;
+      margin-top: 0;
+
+      /* Needed to keep the Edge thumb centred */
+    }
+    
+    input[type="range"]:focus::-ms-fill-lower {
+      background: transparent;
+    }
+    input[type="range"]:focus::-ms-fill-upper {
+      background: transparent;
+    }
+
+    /* 覆写拖动球hover时的样式 */
+    input[type="range"]::-webkit-slider-thumb:hover{
+      margin-top: $thumbHoverMarginTop;
+      width: $thumbHoverWidth;
+      height: $thumbHoverHeight;
+      border-radius: $thumbHoverRadius;
+    }
+    input[type="range"]::-moz-range-thumb:hover{
+      margin-top: $thumbHoverMarginTop;
+      width: $thumbHoverWidth;
+      height: $thumbHoverHeight;
+      border-radius: $thumbHoverRadius;
+    }
+    input[type="range"]::-ms-thumb:hover {
+      margin-top: $thumbHoverMarginTop;
+      width: $thumbHoverWidth;
+      height: $thumbHoverHeight;
+      border-radius: $thumbHoverRadius;
+    }
+    
+    /* TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
+    how to remove the virtical space around the range input in IE */
+
+    @supports (-ms-ime-align:auto) {
+      /* Pre-Chromium Edge only styles, selector taken from hhttps://stackoverflow.com/a/32202953/7077589 */
+
+      input[type="range"] {
+        margin: 0;
+
+        /* Edge starts the margin from the thumb, not the track as other browsers do */
+      }
+    }
+
+    .control {
+      position: absolute;
+      top: -90px;
+      left: 15px;
+      width: 35px;
+      height: 100px;
+      padding: 10px;
+      .progress-volume {
+        position: relative;
+        width: 15px;
+        height: 75px;
+        background-color: gray;
+        .point-volume {
+          position: absolute;
+          left: -5px;
+          bottom: 0;
+          width: 25px;
+          height: 25px;
+          border-radius: 25px;
+          background: white;
+          z-index: 2;
+        }
+        .volume-active {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          height: 100%;
+          background: black;
+          z-index: 1;
+        }
+      }
+    }
+  }
+}
