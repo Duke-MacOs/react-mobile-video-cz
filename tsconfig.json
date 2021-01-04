@@ -21,7 +21,4 @@
     "isolatedModules": true,
     "noEmit": true
   },
-  "files": [
-    "./js_transition.d.ts"
-  ],
 }
