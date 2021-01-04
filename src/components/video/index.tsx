@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useReducer, useState, ReducerWithoutAction } from 'react';
+import React, { useEffect, useRef, useReducer, useState } from 'react';
 import cx from 'classnames';
 // import dsbridge from 'dsbridge';
 import { getIsInRocketApp } from './util';
