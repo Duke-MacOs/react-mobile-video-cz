@@ -164,7 +164,9 @@ export const NoFullscreenControls:React.FC<NoFullscreenControlsProps> = (props) 
     <div
       styleName="no-full-screen-container"
     >
-      <div styleName="play-pause">
+      <div styleName="play-pause" onClick={()=>{
+        operation.handleTogglePlay();
+      }}>
         <img src={showplay?Icon.playCtrl:Icon.pauseCtrl} alt=''/>
       </div>
       <span
