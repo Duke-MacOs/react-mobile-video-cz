@@ -43,6 +43,8 @@ export const NoFullscreenControls:React.FC<NoFullscreenControlsProps> = (props) 
   const progressLockRef = useRef<boolean>(true);
   const volumeLockRef = useRef<boolean>(true);
 
+  const showplay = (videoState === 'pause' || videoState === 'null' || videoState === 'error');
+
   useEffect(() => {
     if(currentTime && duration) {
       const p = Math.floor(currentTime / duration * 100);
@@ -112,21 +114,21 @@ export const NoFullscreenControls:React.FC<NoFullscreenControlsProps> = (props) 
     setVisibleVolumeControl((prev) => !prev);
   };
 
-  const entryFullscreenStyle = {
-    width: '32px',
-    height: '32px',
-    marginRight:'32px',
-    background: `url(${fullScreenBtn ?? Icon.entryFullscreen}) center center no-repeat`,
-    backgroundSize: 'contain',
-  };
+  // const entryFullscreenStyle = {
+  //   // width: '32px',
+  //   // height: '32px',
+  //   // marginRight:'32px',
+  //   background: `url(${fullScreenBtn ?? Icon.entryFullscreen}) center center no-repeat`,
+  //   backgroundSize: 'contain',
+  // };
 
-  const quitFullscreenStyle = {
-    width: '32px',
-    height: '32px',
-    marginRight:'32px',
-    background: `url(${fullScreenBtn ?? Icon.quitFullscreen}) center center no-repeat`,
-    backgroundSize: 'contain',
-  };
+  // const quitFullscreenStyle = {
+  //   // width: '32px',
+  //   // height: '32px',
+  //   // marginRight:'32px',
+  //   background: `url(${fullScreenBtn ?? Icon.quitFullscreen}) center center no-repeat`,
+  //   backgroundSize: 'contain',
+  // };
 
   const volumeStyle = {
     width: '38px',
@@ -162,6 +164,9 @@ export const NoFullscreenControls:React.FC<NoFullscreenControlsProps> = (props) 
     <div
       styleName="no-full-screen-container"
     >
+      <div styleName="play-pause">
+        <img src={showplay?Icon.playCtrl:Icon.pauseCtrl} alt=''/>
+      </div>
       <span
         styleName="time left"
         style={timeStyle}>{formatDuraton(currentTime)}</span>
@@ -240,12 +245,18 @@ export const NoFullscreenControls:React.FC<NoFullscreenControlsProps> = (props) 
       </div>
       {isFullScreen ? (
         <div
-          style={quitFullscreenStyle}
-          onClick={operation.handleFullScreen} />
+          styleName="fullscreenBtn"
+          // style={quitFullscreenStyle}
+          onClick={operation.handleFullScreen} >
+            <img src={fullScreenBtn ?? Icon.quitFullscreen} alt=""/>
+          </div>
       ) : (
         <div
-          style={entryFullscreenStyle}
-          onClick={operation.handleFullScreen} />
+          styleName="fullscreenBtn"
+          // style={entryFullscreenStyle}
+          onClick={operation.handleFullScreen} >
+            <img src={fullScreenBtn ?? Icon.entryFullscreen} alt=""/>
+          </div>
       )}
     </div>
   );
