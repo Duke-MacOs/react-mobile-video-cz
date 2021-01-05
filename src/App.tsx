@@ -1,7 +1,8 @@
 import * as React from "react";
 import "./styles.scss";
-// import {Videocz} from './components/video'
-import {Videocz} from 'react-video-cz';
+import {Videocz} from './components/video'
+// import {Videocz} from 'react-video-cz';
+// import {Videocz} from './lib/index';
 export default function App() {
   return (
     <div styleName="App">

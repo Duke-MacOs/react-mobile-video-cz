@@ -45,7 +45,7 @@ export const Videocz:React.FC<VideoczProps> = (props) => {
     width, height, src, poster, progressColor, progressBackColor, thumb, timeStyle, fullScreenBtn, pauseBtn, playBtn, loading,
     onAbort, onCanplay, onCanPlaythrough, onDurationchange, onEmptied, onEnded, onError, onLoadedmetadata,
     onLoadstart, onPause, onPlay, onPlaying, onProgress, onRateChange, onSeeked, onSeeking,
-    onStalled, onSuspend, onTimeupdate, onVolumechange, onWaiting,
+    onStalled, onSuspend, onTimeupdate, onVolumechange, onWaiting,showCenterBtn = false,
   } = props;
 
   useEffect(() => {
@@ -327,7 +327,8 @@ export const Videocz:React.FC<VideoczProps> = (props) => {
             pauseBtn={pauseBtn}
             loading={loading}
             videoState={videoState}
-            operation={operation} />
+            operation={operation}
+           />
         </div>
       </div>
     </>

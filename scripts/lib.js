@@ -11,7 +11,7 @@ const path = require('path');
 // const fs = require('fs-extra');
 const webpack = require('webpack');
 const configFactory = require('../config/webpack.config');
-// const paths = require('../config/paths');
+const paths = require('../config/paths');
 // const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 // const printHostingInstructions = require('react-dev-utils/printHostingInstructions');
@@ -26,6 +26,7 @@ const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const config = configFactory('production');
 
 config.entry = [path.join(__dirname, '../src/components/video/index.tsx')];
+// config.entry = [paths.videoIndexJs];
 config.output = {
   filename: 'index.js',
   path: path.join(__dirname, '../lib')

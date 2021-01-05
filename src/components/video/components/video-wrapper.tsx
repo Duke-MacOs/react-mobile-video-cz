@@ -32,7 +32,7 @@ export const VideoWrapper:React.FC<VideoWrapperProps> = (props) => {
     background: `url(${playBtn ?? Icon.play}) center center no-repeat`,
     backgroundSize: 'contain',
     /* 部分 Android 机 <video> 初始化会触发 onerror 事件，故这里添加一个 error 匹配以便播放视频 */
-    display: videoState === 'pause' || videoState === 'null' || videoState === 'error' ? 'block' : 'none',
+    display: (videoState === 'pause' || videoState === 'null' || videoState === 'error') ? 'block' : 'none',
   } as React.CSSProperties;
 
   const pauseIconStyle = {
@@ -45,7 +45,7 @@ export const VideoWrapper:React.FC<VideoWrapperProps> = (props) => {
     height: '38px',
     background: `url(${pauseBtn ?? Icon.pause}) center center no-repeat`,
     backgroundSize: 'contain',
-    display: videoState === 'play' ? 'block' : 'none',
+    display: (videoState === 'play') ? 'block' : 'none',
   } as React.CSSProperties;
 
   const waitingIconStyle = {

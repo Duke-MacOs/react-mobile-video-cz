@@ -23,6 +23,7 @@ export interface VideoczProps {
   pauseBtn?:string;
   playBtn?:string;
   loading?:string;
+  showCenterBtn?:boolean;
 
   // video事件
   onAbort?:fun;

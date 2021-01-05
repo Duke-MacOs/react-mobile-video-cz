@@ -16,6 +16,8 @@ interface NoFullscreenControlsProps {
   progressColor?:string;
   progressBackColor?:string;
   thumb?:string;
+  pauseBtn?:string;
+  playBtn?:string;
   timeStyle?:Record<string, any>;
   fullScreenBtn?:string;
 
@@ -113,6 +115,7 @@ export const NoFullscreenControls:React.FC<NoFullscreenControlsProps> = (props) 
   const entryFullscreenStyle = {
     width: '32px',
     height: '32px',
+    marginRight:'32px',
     background: `url(${fullScreenBtn ?? Icon.entryFullscreen}) center center no-repeat`,
     backgroundSize: 'contain',
   };
@@ -120,6 +123,7 @@ export const NoFullscreenControls:React.FC<NoFullscreenControlsProps> = (props) 
   const quitFullscreenStyle = {
     width: '32px',
     height: '32px',
+    marginRight:'32px',
     background: `url(${fullScreenBtn ?? Icon.quitFullscreen}) center center no-repeat`,
     backgroundSize: 'contain',
   };

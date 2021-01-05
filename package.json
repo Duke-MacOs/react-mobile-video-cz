@@ -58,6 +58,7 @@
     "sass-loader": "8.0.2",
     "semver": "6.3.0",
     "style-loader": "0.23.1",
+    "supports-color": "^8.1.0",
     "terser-webpack-plugin": "2.3.8",
     "ts-pnp": "1.1.6",
     "url-loader": "2.3.0",
@@ -69,6 +70,7 @@
   "devDependencies": {
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
+    "postcss-pxtorem": "^5.1.1",
     "typescript": "3.9.7"
   },
   "scripts": {
