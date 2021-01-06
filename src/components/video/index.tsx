@@ -32,7 +32,7 @@ const reducer = (state:VideoczState, action:VideoActionTypes):VideoczState => {
   }
 };
 
-export const Videocz:React.FC<VideoczProps> = (props) => {
+const Videocz:React.FC<VideoczProps> = (props) => {
   const isInApp = getIsInRocketApp();
   const [state, dispatch] = useReducer(reducer, initialState);
   const { videoState, currentTime, duration, fullScreen } = state;
@@ -334,3 +334,5 @@ export const Videocz:React.FC<VideoczProps> = (props) => {
     </>
   );
 };
+
+export default Videocz;

@@ -10,10 +10,11 @@ const path = require('path');
 // const chalk = require('react-dev-utils/chalk');
 // const fs = require('fs-extra');
 const webpack = require('webpack');
-const configFactory = require('../config/webpack.config');
+const configFactory = require('../config/webpack.prod');
 const paths = require('../config/paths');
 // const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
+const { library } = require('webpack');
 // const printHostingInstructions = require('react-dev-utils/printHostingInstructions');
 // const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 // const printBuildError = require('react-dev-utils/printBuildError');
@@ -29,27 +30,37 @@ config.entry = [path.join(__dirname, '../src/components/video/index.tsx')];
 // config.entry = [paths.videoIndexJs];
 config.output = {
   filename: 'index.js',
-  path: path.join(__dirname, '../lib')
+  path: path.join(__dirname, '../lib'),
+  libraryTarget:'umd',
+  library:'Videocz',
+  libraryExport:'default'
 }
 
 config.plugins = [config.plugins[5]];
 // config.output.library = pkg.name;
-config.output.libraryTarget = 'umd';
+// config.output.libraryTarget = 'umd';
+config.mode = 'none'
 
 config.externals = {
-  react: {
-    root: 'React',
-    commonjs2: 'react',
-    commonjs: 'react',
-    amd: 'react',
-  },
-  'react-dom': {
-    root: 'ReactDOM',
-    commonjs2: 'react-dom',
-    commonjs: 'react-dom',
-    amd: 'react-dom',
-  },
+  'react': 'react',
+  'react-dom': 'react-dom'
 };
+
+
+// config.externals = {
+//   react: {
+//     root: 'React',
+//     commonjs2: 'react',
+//     commonjs: 'react',
+//     amd: 'react',
+//   },
+//   'react-dom': {
+//     root: 'ReactDOM',
+//     commonjs2: 'react-dom',
+//     commonjs: 'react-dom',
+//     amd: 'react-dom',
+//   },
+// };
 lib();
 
 

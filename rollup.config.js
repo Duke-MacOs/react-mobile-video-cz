@@ -3,12 +3,14 @@ import sass from 'rollup-plugin-sass';
 import { terser as minify } from 'rollup-plugin-terser';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import typescript from '@rollup/plugin-typescript';
-import babel from '@rollup/plugin-babel';
+// import typescript from '@rollup/plugin-typescript';
+import babel, { getBabelOutputPlugin } from '@rollup/plugin-babel';
 import image from '@rollup/plugin-image';
 
 const peerDependencies = ["react", "react-dom"];
 const dependencies = ["@babel/runtime", "classnames", "lodash.throttle", "prop-types","redux"];
+
+process.NODE_ENV = 'production';
 
 function globals() {
   return {
@@ -20,37 +22,48 @@ function globals() {
 function baseConfig() {
   return {
     input: 'src/components/video/index.tsx',
+    output: {},
     plugins: [
 			image(),
       sass({
-        output: 'lib/video-react.css'
+        output: 'dist/video-react.css'
 			}),
-			
-			nodeResolve(),
-			// url({
-			// 	limit: 10 * 1024, // inline files < 10k, copy files > 10k
-  		// 	include: ["**/*.svg"], // defaults to .svg, .png, .jpg and .gif files
-  		// 	emitFiles: true // defaults to true
-			// }),
+			nodeResolve({
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      }),
       commonjs({
 				include: ['node_modules/**', 'src/**']
 			}),
-      typescript(),
       babel({
         babelrc: false,
-        presets: [
+        babelHelpers: 'runtime', 
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        "presets": [
           [
-            '@babel/env',
+            "@babel/preset-env",
             {
-              loose: true,
-              shippedProposals: true,
-              modules: false,
-              targets: {
-                ie: 9
-              }
+              "modules": false
             }
           ],
-          '@babel/react'
+          "@babel/preset-typescript",
+          "@babel/preset-react",
+        ],
+        "plugins": [
+          "@babel/plugin-transform-runtime",
+          "@babel/plugin-proposal-object-rest-spread",
+          [
+            "react-css-modules",
+            {
+              "generateScopedName": "[path][name]__[local]",
+              "webpackHotModuleReloading": true,
+              "handleMissingStyleName": "warn",
+              "filetypes": {
+                ".scss": {
+                  "syntax": "postcss-scss"
+                }
+              }
+            }
+          ]
         ]
       })
     ]
@@ -88,13 +101,13 @@ libConfig.output = [
   {
     sourcemap: true,
     name: 'video-react',
-    file: 'lib/video-react.cjs.js',
+    file: 'dist/video-react.cjs.js',
     format: 'cjs'
   },
   {
     sourcemap: true,
     name: 'video-react',
-    file: 'lib/video-react.es.js',
+    file: 'dist/video-react.es.js',
     format: 'es'
   }
 ];
@@ -114,7 +127,7 @@ libConfig.output = [
 
   1) `video-react.min.js`
       This file excludes `redux` from
-      the lib build where they need to be manually required if any
+      the dist build where they need to be manually required if any
       application uses components that require these features.
 
   2) `video-react.full.min.js`
@@ -130,7 +143,7 @@ umdFullConfig.output = [
     globals: globals(),
     sourcemap: true,
     name: 'video-react',
-    file: 'lib/video-react.full.js',
+    file: 'dist/video-react.full.js',
     format: 'umd'
   }
 ];
@@ -152,7 +165,7 @@ umdFullConfigMin.output = [
     globals: globals(),
     sourcemap: true,
     name: 'video-react',
-    file: 'lib/video-react.full.min.js',
+    file: 'dist/video-react.full.min.js',
     format: 'umd'
   }
 ];
@@ -171,7 +184,7 @@ umdConfig.output = [
     globals: allGlobals,
     sourcemap: true,
     name: 'video-react',
-    file: 'lib/video-react.js',
+    file: 'dist/video-react.js',
     format: 'umd'
   }
 ];
@@ -183,7 +196,7 @@ umdConfigMin.output = [
     globals: allGlobals,
     sourcemap: true,
     name: 'video-react',
-    file: 'lib/video-react.min.js',
+    file: 'dist/video-react.min.js',
     format: 'umd'
   }
 ];
