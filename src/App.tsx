@@ -10,7 +10,6 @@ import Videocz from './components/video'
 
 // import 'react-video-cz/lib/index.css';
 export default function App() {
-  console.log('videocz',Videocz);
   
   return (
     <div styleName="App">
