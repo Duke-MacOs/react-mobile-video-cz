@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import React, { useState, useEffect, useRef } from 'react';
 import { jsx,css } from '@emotion/react';
-// import { css } from '@emotion/css'
 
 import { Icon } from '../assets/icon';
 import { formatDuraton, getClient, getEleRelativeScreenPosition } from '../util';
