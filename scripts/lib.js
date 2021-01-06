@@ -36,15 +36,15 @@ config.output = {
   libraryExport:'default'
 }
 
-config.plugins = [config.plugins[5]];
+// config.plugins = [config.plugins[5]];
 // config.output.library = pkg.name;
 // config.output.libraryTarget = 'umd';
-config.mode = 'none'
+// config.mode = 'none'
 
-config.externals = {
-  'react': 'react',
-  'react-dom': 'react-dom'
-};
+// config.externals = {
+//   'react': 'react',
+//   'react-dom': 'react-dom'
+// };
 
 
 // config.externals = {

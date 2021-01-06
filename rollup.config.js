@@ -1,11 +1,12 @@
 import replace from '@rollup/plugin-replace';
-import sass from 'rollup-plugin-sass';
 import { terser as minify } from 'rollup-plugin-terser';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-// import typescript from '@rollup/plugin-typescript';
-import babel, { getBabelOutputPlugin } from '@rollup/plugin-babel';
+import babel from '@rollup/plugin-babel';
 import image from '@rollup/plugin-image';
+import postcss from 'rollup-plugin-postcss';
+
+const hash = '[name]_[local]__[hash:base64:5]';
 
 const peerDependencies = ["react", "react-dom"];
 const dependencies = ["@babel/runtime", "classnames", "lodash.throttle", "prop-types","redux"];
@@ -19,20 +20,26 @@ function globals() {
   };
 }
 
-function baseConfig() {
+function baseConfig(minimize = false) {
   return {
     input: 'src/components/video/index.tsx',
     output: {},
     plugins: [
+      // scss({
+      //   output: 'dist/video-react.css'
+      // }),
+      postcss({
+        minimize,
+        extract: true,
+        modules: true,
+        sourceMap: false,
+      }),
 			image(),
-      sass({
-        output: 'dist/video-react.css'
-			}),
 			nodeResolve({
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       }),
       commonjs({
-				include: ['node_modules/**', 'src/**']
+				include: ['node_modules/**']
 			}),
       babel({
         babelrc: false,
@@ -45,21 +52,21 @@ function baseConfig() {
               "modules": false
             }
           ],
-          "@babel/preset-typescript",
           "@babel/preset-react",
+          "@babel/preset-typescript",
         ],
-        "plugins": [
+        plugins: [
           "@babel/plugin-transform-runtime",
           "@babel/plugin-proposal-object-rest-spread",
           [
             "react-css-modules",
             {
-              "generateScopedName": "[path][name]__[local]",
-              "webpackHotModuleReloading": true,
-              "handleMissingStyleName": "warn",
-              "filetypes": {
+              generateScopedName: hash,
+              webpackHotModuleReloading: false,
+              handleMissingStyleName: "warn",
+              filetypes: {
                 ".scss": {
-                  "syntax": "postcss-scss"
+                  syntax: "postcss-scss"
                 }
               }
             }
@@ -71,7 +78,7 @@ function baseConfig() {
 }
 
 function baseUmdConfig(minified) {
-  const config = Object.assign(baseConfig(), {
+  const config = Object.assign(baseConfig(minified), {
     external: peerDependencies
   });
   config.plugins.push(
@@ -202,7 +209,7 @@ umdConfigMin.output = [
 ];
 
 export default [
-  libConfig,
+  // libConfig,
   umdConfig,
   umdConfigMin
 ];

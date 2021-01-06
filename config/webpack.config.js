@@ -1,3 +1,5 @@
+
+
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
@@ -69,7 +71,10 @@ module.exports = function(webpackEnv) {
   const env = getClientEnvironment(paths.publicUrlOrPath.slice(0, -1));
 
   // common function to get style loaders
-  const getStyleLoaders = (cssOptions, preProcessor) => {
+  const getStyleLoaders = (cssOptions, preProcessor, modules = {
+    localIdentName: hash,
+    // context: process.cwd(),
+  }) => {
     const loaders = [
       isEnvDevelopment && require.resolve('style-loader'),
       isEnvProduction && {
@@ -84,10 +89,7 @@ module.exports = function(webpackEnv) {
         loader: require.resolve('css-loader'),
         options: {
           ...cssOptions,
-          modules: {
-            localIdentName: hash,
-            // context: process.cwd(),
-          },
+          modules,
         },
       },
       {
@@ -111,21 +113,6 @@ module.exports = function(webpackEnv) {
             // so that it honors browserslist config in package.json
             // which in turn let's users customize the target behavior as per their needs.
             postcssNormalize(),
-            // require('postcss-pxtorem')({
-            //   rootValue: 100,
-            //   propList: [
-            //     '*',
-            //     '!min-width',
-            //     '!border',
-            //     '!border-left',
-            //     '!border-right',
-            //     '!border-top',
-            //     '!border-bottom',
-            //   ],
-            //   selectorBlackList: [
-            //     'no_rem',
-            //   ],
-            // }),
           ],
           sourceMap: isEnvProduction && shouldUseSourceMap,
         },
@@ -319,7 +306,7 @@ module.exports = function(webpackEnv) {
           'react-dom$': 'react-dom/profiling',
           'scheduler/tracing': 'scheduler/tracing-profiling',
         }),
-        ...(modules.webpackAliases || {}),
+        ...(modules.webpackAliases || {})
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -477,6 +464,7 @@ module.exports = function(webpackEnv) {
             {
               test: cssRegex,
               exclude: cssModuleRegex,
+              include: paths.appSrc,
               use: getStyleLoaders({
                 importLoaders: 1,
                 sourceMap: isEnvProduction && shouldUseSourceMap,
@@ -485,6 +473,15 @@ module.exports = function(webpackEnv) {
               // containing package claims to have no side effects.
               // Remove this when webpack adds a warning or an error for this.
               // See https://github.com/webpack/webpack/issues/6571
+              sideEffects: true,
+            },
+            {
+              test: cssRegex,
+              exclude: paths.appSrc,
+              use: getStyleLoaders({
+                importLoaders: 1,
+                sourceMap: isEnvProduction && shouldUseSourceMap,
+              }, '', false),
               sideEffects: true,
             },
             // Adds support for CSS Modules (https://github.com/css-modules/css-modules)
