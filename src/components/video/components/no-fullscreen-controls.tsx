@@ -5,9 +5,11 @@ import { jsx,css } from '@emotion/react';
 import { Icon } from '../assets/icon';
 import { formatDuraton, getClient, getEleRelativeScreenPosition } from '../util';
 import { VideoTypes } from '../type';
-import thumbImg from './../assets/thumb.png';
+// import thumbImg from './../assets/thumb.png';
 
 import './control.scss';
+
+const thumbImg = Icon.thumb;
 
 interface NoFullscreenControlsProps {
 
@@ -185,6 +187,7 @@ export const NoFullscreenControls:React.FC<NoFullscreenControlsProps> = (props) 
 
         </div>
         <input
+          // @ts-ignore
           css={inputCss}
           // className={inputCss}
           type="range"

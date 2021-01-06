@@ -28,13 +28,14 @@ function baseConfig(minimize = false) {
       // scss({
       //   output: 'lib/index.css'
       // }),
+      
       postcss({
         minimize,
         extract: true,
         modules: true,
         sourceMap: false,
       }),
-			image(),
+      image(),
 			nodeResolve({
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       }),
@@ -72,7 +73,8 @@ function baseConfig(minimize = false) {
             }
           ]
         ]
-      })
+      }),
+      
     ]
   };
 }
