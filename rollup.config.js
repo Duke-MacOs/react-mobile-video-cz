@@ -26,7 +26,7 @@ function baseConfig(minimize = false) {
     output: {},
     plugins: [
       // scss({
-      //   output: 'dist/video-react.css'
+      //   output: 'lib/index.css'
       // }),
       postcss({
         minimize,
@@ -107,14 +107,14 @@ libConfig.external = peerDependencies.concat(dependencies);
 libConfig.output = [
   {
     sourcemap: true,
-    name: 'video-react',
-    file: 'dist/video-react.cjs.js',
+    name: 'index',
+    file: 'lib/index.cjs.js',
     format: 'cjs'
   },
   {
     sourcemap: true,
-    name: 'video-react',
-    file: 'dist/video-react.es.js',
+    name: 'index',
+    file: 'lib/index.es.js',
     format: 'es'
   }
 ];
@@ -130,14 +130,14 @@ libConfig.output = [
   Defining this config will also check that all peer dependencies are set up
   correctly in the globals entry.
 
-  video-react has two versions:
+  index has two versions:
 
-  1) `video-react.min.js`
+  1) `index.min.js`
       This file excludes `redux` from
-      the dist build where they need to be manually required if any
+      the lib build where they need to be manually required if any
       application uses components that require these features.
 
-  2) `video-react.full.min.js`
+  2) `index.full.min.js`
       This file includes all dependencies.
 
   For both versions the peer dependencies are always excluded and must be manually
@@ -149,8 +149,8 @@ umdFullConfig.output = [
   {
     globals: globals(),
     sourcemap: true,
-    name: 'video-react',
-    file: 'dist/video-react.full.js',
+    name: 'index',
+    file: 'lib/index.full.js',
     format: 'umd'
   }
 ];
@@ -171,8 +171,8 @@ umdFullConfigMin.output = [
   {
     globals: globals(),
     sourcemap: true,
-    name: 'video-react',
-    file: 'dist/video-react.full.min.js',
+    name: 'index',
+    file: 'lib/index.full.min.js',
     format: 'umd'
   }
 ];
@@ -190,8 +190,8 @@ umdConfig.output = [
   {
     globals: allGlobals,
     sourcemap: true,
-    name: 'video-react',
-    file: 'dist/video-react.js',
+    name: 'index',
+    file: 'lib/index.js',
     format: 'umd'
   }
 ];
@@ -202,8 +202,8 @@ umdConfigMin.output = [
   {
     globals: allGlobals,
     sourcemap: true,
-    name: 'video-react',
-    file: 'dist/video-react.min.js',
+    name: 'index',
+    file: 'lib/index.min.js',
     format: 'umd'
   }
 ];
