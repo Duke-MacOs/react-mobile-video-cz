@@ -42,7 +42,7 @@ const Videocz:React.FC<VideoczProps> = (props) => {
   const fadeTimer = useRef<ReturnType<typeof setTimeout>>(null);
 
   const {
-    width, height, src, poster, progressColor, progressBackColor, thumb, timeStyle, fullScreenBtn, pauseBtn, playBtn, loading,
+    width, height, src, poster ,preload="auto",autoPlay = false, progressColor, progressBackColor, thumb, timeStyle, fullScreenBtn, pauseBtn, playBtn, loading,
     onAbort, onCanplay, onCanPlaythrough, onDurationchange, onEmptied, onEnded, onError, onLoadedmetadata,
     onLoadstart, onPause, onPlay, onPlaying, onProgress, onRateChange, onSeeked, onSeeking,
     onStalled, onSuspend, onTimeupdate, onVolumechange, onWaiting,showCenterBtn = false,
@@ -250,7 +250,8 @@ const Videocz:React.FC<VideoczProps> = (props) => {
           src={src}
           poster={poster}
           width="100%"
-          preload="auto"
+          preload={preload}
+          autoPlay={autoPlay}
           // @ts-ignore
           playsInline={fullScreen ? '' : 'isiPhoneShowPlaysinline'}
           webkit-playsinline="true" /* 这个属性是ios 10中设置可以让视频在小窗内播放，也就是不是全屏播放 */
@@ -258,6 +259,7 @@ const Videocz:React.FC<VideoczProps> = (props) => {
           x5-video-player-type="h5-page" // 启用H5播放器,是wechat安卓版特性
           // x5-video-player-fullscreen="true" // 全屏设置，设置为 true 是防止横屏
           x5-video-orientation="landscape" // 播放器的方向， landscape横屏，portraint竖屏，默认值为竖屏
+          raw-controls="false"   //钉钉webview播放器
           crossOrigin="anonymous"
           onDurationChange={(e) => {
             handleLoaded();

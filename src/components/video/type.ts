@@ -14,6 +14,8 @@ export interface VideoczProps {
   height?:string;
   src?:string;
   poster?:string;
+  autoPlay?:boolean;
+  preload?:string;
   progressColor?:string;
   progressBackColor?:string;
   thumb?:string;
