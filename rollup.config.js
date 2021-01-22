@@ -32,7 +32,7 @@ function baseConfig(minimize = false) {
       // }),
       typescript({
         tsconfigDefaults: {
-          compilerOptions: { declaration: true, jsx: 'react' },
+          compilerOptions: { declaration: false, jsx: 'react' },
         },
       }),
       
