@@ -54,7 +54,12 @@ function baseConfig(minimize = false) {
             {
               "modules": false,
               "targets": {
-                "browsers": ["last 2 versions", "safari >= 7"],
+                "browsers": [
+                  "edge>= 17",
+                  "firefox>= 60",
+                  "chrome>= 40",
+                  "safari>= 10",
+                ],
                 "node": "6.10"
               },
             }
