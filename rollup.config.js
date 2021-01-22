@@ -30,11 +30,6 @@ function baseConfig(minimize = false) {
       // scss({
       //   output: 'lib/index.css'
       // }),
-      typescript({
-        tsconfigDefaults: {
-          compilerOptions: { declaration: false, jsx: 'react' },
-        },
-      }),
       
       postcss({
         minimize,
@@ -48,7 +43,7 @@ function baseConfig(minimize = false) {
       }),
       commonjs({
 				include: ['node_modules/**']
-			}),
+      }),
       babel({
         babelrc: false,
         babelHelpers: 'runtime', 
@@ -57,7 +52,11 @@ function baseConfig(minimize = false) {
           [
             "@babel/preset-env",
             {
-              "modules": false
+              "modules": false,
+              "targets": {
+                "browsers": ["last 2 versions", "safari >= 7"],
+                "node": "6.10"
+              },
             }
           ],
           "@babel/preset-react",
