@@ -5,7 +5,7 @@ import play_ctrl from './play_ctrl.png';
 import pause_ctrl from './pause_ctrl.png';
 import thumb from './thumb.png';
 
-export const Icon = {
+export var Icon = {
   play: play,
   pause: pause,
   entryFullscreen: fullscreen,

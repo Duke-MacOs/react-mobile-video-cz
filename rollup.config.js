@@ -5,6 +5,8 @@ import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
 import image from '@rollup/plugin-image';
 import postcss from 'rollup-plugin-postcss';
+import typescript from 'rollup-plugin-typescript2';
+
 
 const hash = '[name]_[local]__[hash:base64:5]';
 
@@ -28,6 +30,11 @@ function baseConfig(minimize = false) {
       // scss({
       //   output: 'lib/index.css'
       // }),
+      typescript({
+        tsconfigDefaults: {
+          compilerOptions: { declaration: true, jsx: 'react' },
+        },
+      }),
       
       postcss({
         minimize,
