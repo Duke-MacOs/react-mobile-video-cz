@@ -9,6 +9,10 @@
   "files": [
     "lib"
   ],
+  "repository":{
+    "type": "git",
+    "url": "https://github.com/Duke-MacOs/react-mobile-video-cz"
+  },
   "dependencies": {
     "@emotion/react": "11.1.4",
     "camelcase": "^5.3.1",
