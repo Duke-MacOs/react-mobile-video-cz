@@ -1,4 +1,4 @@
-import { SyntheticEvent } from 'react';
+import { MutableRefObject, SyntheticEvent } from 'react';
 
 export interface VideoczState {
   videoState:'play'|'pause'|'waiting'|'null'|'error';
@@ -25,6 +25,7 @@ export interface VideoczProps {
   playBtn?:string;
   loading?:string;
   showCenterBtn?:boolean;
+  videoRef?:MutableRefObject<HTMLVideoElement>;
 
   // video事件
   onAbort?:fun;

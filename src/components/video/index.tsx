@@ -45,7 +45,7 @@ const Videocz:React.FC<VideoczProps> = (props) => {
     width, height, src, poster ,preload="auto",autoPlay = false, progressColor, progressBackColor, thumb, timeStyle, fullScreenBtn, pauseBtn, playBtn, loading,
     onAbort, onCanplay, onCanPlaythrough, onDurationchange, onEmptied, onEnded, onError, onLoadedmetadata,
     onLoadstart, onPause, onPlay, onPlaying, onProgress, onRateChange, onSeeked, onSeeking,
-    onStalled, onSuspend, onTimeupdate, onVolumechange, onWaiting,showCenterBtn = false,
+    onStalled, onSuspend, onTimeupdate, onVolumechange, onWaiting,showCenterBtn = false,videoRef : Ref
   } = props;
 
   useEffect(() => {
@@ -56,6 +56,10 @@ const Videocz:React.FC<VideoczProps> = (props) => {
       });
     }
   }, []);
+
+  useEffect(()=>{
+    Ref.current = videoRef.current;
+  },[videoRef.current])
 
   /**
    * 监听全屏

@@ -10,10 +10,17 @@ import Videocz from './components/video'
 
 // import 'react-video-cz/lib/index.css';
 export default function App() {
+
+  const ref = React.useRef<HTMLVideoElement>(null);
+
+  React.useEffect(()=>{
+    console.log(ref.current);
+    
+  },[ref.current])
   
   return (
     <div className="App">
-      <Videocz src="" />
+      <Videocz videoRef={ref} src="" />
     </div>
   );
 }
