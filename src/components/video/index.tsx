@@ -45,7 +45,7 @@ const Videocz:React.FC<VideoczProps> = (props) => {
     width, height, src, poster ,preload="auto",autoPlay = false, progressColor, progressBackColor, thumb, timeStyle, fullScreenBtn, pauseBtn, playBtn, loading,
     onAbort, onCanplay, onCanPlaythrough, onDurationchange, onEmptied, onEnded, onError, onLoadedmetadata,
     onLoadstart, onPause, onPlay, onPlaying, onProgress, onRateChange, onSeeked, onSeeking,
-    onStalled, onSuspend, onTimeupdate, onVolumechange, onWaiting,showCenterBtn = false,videoRef : Ref
+    onStalled, onSuspend, onTimeupdate, onVolumechange, onWaiting,showCenterBtn = true,showController = true,showBottomProgress = true,videoRef : Ref
   } = props;
 
   useEffect(() => {
@@ -302,7 +302,7 @@ const Videocz:React.FC<VideoczProps> = (props) => {
           onTimeUpdate={onTimeupdate}
           onVolumeChange={onVolumechange}
         />
-        {visibleCustomCtrl && (
+        {showController&&visibleCustomCtrl && (
           <div styleName={cx('control-container', fadeEntry ? 'control-in' : 'control-out', 'fade-enter-active')}>
             <NoFullscreenControls
               progressColor={progressColor}
@@ -318,7 +318,7 @@ const Videocz:React.FC<VideoczProps> = (props) => {
               dispatch={dispatch} />
           </div>
         )}
-        {!fadeEntry && (
+        {showBottomProgress&&!fadeEntry && (
           <div styleName={cx('control-container', !fadeEntry ? 'control-in' : 'control-out', 'fade-enter-active')}>
             <BottomProgress
               currentTime={state.currentTime}
@@ -327,15 +327,18 @@ const Videocz:React.FC<VideoczProps> = (props) => {
               progressBackColor={progressBackColor} />
           </div>
         )}
-        <div styleName={cx('fade-leave-active', fadeEntry ? 'wrapper-in' : 'wrapper-out')}>
-          <VideoWrapper
-            playBtn={playBtn}
-            pauseBtn={pauseBtn}
-            loading={loading}
-            videoState={videoState}
-            operation={operation}
-           />
-        </div>
+        {showCenterBtn&&(
+          <div styleName={cx('fade-leave-active', fadeEntry ? 'wrapper-in' : 'wrapper-out')}>
+            <VideoWrapper
+              playBtn={playBtn}
+              pauseBtn={pauseBtn}
+              loading={loading}
+              videoState={videoState}
+              operation={operation}
+            />
+          </div>
+          )
+        }
       </div>
     </>
   );

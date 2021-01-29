@@ -25,6 +25,8 @@ export interface VideoczProps {
   playBtn?:string;
   loading?:string;
   showCenterBtn?:boolean;
+  showController?:boolean;
+  showBottomProgress?:boolean;
   videoRef?:MutableRefObject<HTMLVideoElement>;
 
   // video事件
