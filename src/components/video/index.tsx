@@ -32,7 +32,7 @@ const reducer = (state:VideoczState, action:VideoActionTypes):VideoczState => {
   }
 };
 
-const Videocz:React.FC<VideoczProps> = (props) => {
+const Videocz:React.FC<VideoczProps> = (props:VideoczProps) => {
   const isInApp = getIsInRocketApp();
   const [state, dispatch] = useReducer(reducer, initialState);
   const { videoState, currentTime, duration, fullScreen } = state;
@@ -58,7 +58,7 @@ const Videocz:React.FC<VideoczProps> = (props) => {
   }, []);
 
   useEffect(()=>{
-    Ref.current = videoRef.current;
+    Ref&&(Ref.current = videoRef.current);
   },[videoRef.current])
 
   /**
