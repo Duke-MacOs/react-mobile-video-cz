@@ -49,11 +49,17 @@ const Videocz:React.FC<VideoczProps> = (props:VideoczProps) => {
   } = props;
 
   useEffect(() => {
+    const timeupdateListener = () => {
+      const currentTime = videoRef.current?.currentTime;
+      dispatch({ type: VideoTypes.MODIFY, payload: { currentTime: currentTime } });
+    };
     if(videoRef.current) {
-      videoRef.current.addEventListener('timeupdate', () => {
-        const currentTime = videoRef.current?.currentTime;
-        dispatch({ type: VideoTypes.MODIFY, payload: { currentTime: currentTime } });
-      });
+      videoRef.current.addEventListener('timeupdate', timeupdateListener);
+    }
+    return ()=>{
+      if(videoRef.current){
+        videoRef.current.removeEventListener('timeupdate', timeupdateListener);
+      }
     }
   }, []);
 
@@ -87,8 +93,9 @@ const Videocz:React.FC<VideoczProps> = (props:VideoczProps) => {
     document.addEventListener('msfullscreenchange', handleFullScreenChange, false);
     return () => {
       document.removeEventListener('fullscreenchange', handleFullScreenChange);
-      document.removeEventListener('mozFullScreen', handleFullScreenChange);
+      document.removeEventListener('mozfullscreenchange', handleFullScreenChange);
       document.removeEventListener('webkitfullscreenchange', handleFullScreenChange);
+      document.removeEventListener('msfullscreenchange',handleFullScreenChange);
       clearInterval(iosIntervalTimer);
     };
   }, []);

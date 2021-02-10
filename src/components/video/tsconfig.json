@@ -3,6 +3,7 @@
   //   "./*.ts+(|x)"
   // ],
   "compilerOptions": {
+    "jsx": "react",
     // "declaration":true,
     // "strict": false,
     // "esModuleInterop": true,

@@ -1,6 +1,6 @@
 {
   "name": "react-video-cz",
-  "version": "0.1.24",
+  "version": "0.1.25",
   "description": "",
   "license": "MIT",
   "keywords": [],
@@ -9,7 +9,7 @@
   "files": [
     "lib"
   ],
-  "repository":{
+  "repository": {
     "type": "git",
     "url": "https://github.com/Duke-MacOs/react-mobile-video-cz"
   },
