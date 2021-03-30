@@ -28,6 +28,8 @@ export interface VideoczProps {
   showController?:boolean;
   showBottomProgress?:boolean;
   videoRef?:MutableRefObject<HTMLVideoElement|null>;
+  muted?:boolean;
+  loop?:boolean;
 
   // video事件
   onAbort?:fun;

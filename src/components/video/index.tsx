@@ -42,7 +42,7 @@ const Videocz:React.FC<VideoczProps> = (props:VideoczProps) => {
   const fadeTimer = useRef<ReturnType<typeof setTimeout>>(null);
 
   const {
-    width, height, src, poster ,preload="auto",autoPlay = false, progressColor, progressBackColor, thumb, timeStyle, fullScreenBtn, pauseBtn, playBtn, loading,
+    width, height, src, poster ,preload="auto",autoPlay = false, muted = false, loop=false, progressColor, progressBackColor, thumb, timeStyle, fullScreenBtn, pauseBtn, playBtn, loading,
     onAbort, onCanplay, onCanPlaythrough, onDurationchange, onEmptied, onEnded, onError, onLoadedmetadata,
     onLoadstart, onPause, onPlay, onPlaying, onProgress, onRateChange, onSeeked, onSeeking,
     onStalled, onSuspend, onTimeupdate, onVolumechange, onWaiting,showCenterBtn = true,showController = true,showBottomProgress = true,videoRef : Ref
@@ -263,6 +263,8 @@ const Videocz:React.FC<VideoczProps> = (props:VideoczProps) => {
           width="100%"
           preload={preload}
           autoPlay={autoPlay}
+          muted={muted}
+          loop={loop}
           // @ts-ignore
           playsInline={fullScreen ? '' : 'isiPhoneShowPlaysinline'}
           webkit-playsinline="true" /* 这个属性是ios 10中设置可以让视频在小窗内播放，也就是不是全屏播放 */
