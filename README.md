@@ -58,6 +58,9 @@ playBtn?:string;   //播放按钮图片，base64
 
 loading?:string;   //loading图片，base64
 
+muted?:boolean;
+loop?:boolean;
+
 showCenterBtn?:boolean;
 showController?:boolean;
 showBottomProgress?:boolean;
